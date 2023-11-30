@@ -42,7 +42,7 @@ DEFAULT_CONFIG = {
     'BETA1': 0.0,                   # adam optimizer beta1
     'BETA2': 0.9,                   # adam optimizer beta2
     'BATCH_SIZE': 8,                # input batch size for training
-    'INPUT_SIZE': 256,              # input image size for training 0 for original size
+    'INPUT_SIZE': 256,              # input image size for training 0 for original size 256 is whatever
     'SIGMA': 2,                     # standard deviation of the Gaussian filter used in Canny edge detector (0: random, -1: no edge)
     'MAX_ITERS': 2e6,               # maximum number of iterations to train the model
 

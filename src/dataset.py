@@ -6,6 +6,7 @@ import numpy as np
 import torchvision.transforms.functional as F
 from torch.utils.data import DataLoader
 from PIL import Image
+import matplotlib.pyplot as plt
 from imageio import imread
 from skimage.feature import canny
 from skimage.color import rgb2gray, gray2rgb
@@ -75,18 +76,52 @@ class Dataset(torch.utils.data.Dataset):
         # resize/crop if needed
         img,mask=segmentor(self.segment_net,img,self.device,self.objects)
         img = Image.fromarray(img)
-        img = np.array(img.resize((size, size), Image.ANTIALIAS))
 
+        # print("show image from dataset before resize")
+        # plt.imshow(img); plt.show()
+
+
+        # resize to original image
+        width_og, height_og = img.size
+
+        print("width")
+        print(width_og)
+        print("height")
+        print(height_og)
+
+        ratio = int((width_og/height_og))
+        print("ratio")
+        print((width_og/height_og))
+
+        # img = np.array(img.resize((width_og, height_og), Image.LANCZOS))
+
+        # deprecated ANTIALIAS -- Use LANCZOS instead
+        # img = np.array(img.resize((size, size), Image.ANTIALIAS))
+
+        # resize to square image
+        img = np.array(img.resize((452, size), Image.LANCZOS))
+
+        # print("show image from dataset after resize")
+        # plt.imshow(img); plt.show()
 
         # create grayscale image
         img_gray = rgb2gray(np.array(img))
-        
-        
-        
 
         # load mask
         mask = Image.fromarray(mask)
-        mask = np.array(mask.resize((size, size), Image.ANTIALIAS))
+
+        # resize to original image (slower but desired resolution)
+        # mask = np.array(mask.resize((width_og, height_og), Image.LANCZOS))
+
+        # deprecated ANTIALIAS -- Use LANCZOS instead
+        # mask = np.array(mask.resize((size, size), Image.ANTIALIAS))
+
+        # resize to square image
+        mask = np.array(mask.resize((452, size), Image.LANCZOS))
+
+        # print("show mask from dataset")
+        # plt.imshow(mask); plt.show()
+
         idx=(mask>0)
         mask[idx]=255
         #kernel = np.ones((5, 5), np.uint8)

@@ -44,6 +44,8 @@ def main(mode=None):
 
     # build the model and initialize
     model = EdgeConnect(config)
+
+
     model.load()
 
 
@@ -94,6 +96,8 @@ def load_config(mode=None):
     config.OBJECTS = args.remove if args.remove is not None else [3,15]
     config.SEG_DEVICE = 'cpu' if args.cpu is not None else 'cuda'
     config.INPUT_SIZE = 256
+    #config.INPUT_SIZE = 0
+    
     if args.input is not None:
         config.TEST_FLIST = args.input
     

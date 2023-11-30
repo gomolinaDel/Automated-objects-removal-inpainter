@@ -53,7 +53,9 @@ def remove_patch_og(real_img,mask):
 
 
 def segmentor(seg_net,img,dev,objects):
-    #plt.imshow(img); plt.show()
+    # print("show original image from segmentor")
+    # plt.imshow(img); plt.show()
+
     if seg_net==1:
         net=fcn
     else:
@@ -75,18 +77,12 @@ def segmentor(seg_net,img,dev,objects):
     om = torch.argmax(out.squeeze(), dim=0).detach().cpu().numpy()
     mask=decode_segmap(om,objects)
     height,width =mask.shape
-    img=np.array(img.resize((width, height), Image.ANTIALIAS))
-
+    #img=np.array(img.resize((width, height), Image.ANTIALIAS))
+    img=np.array(img.resize((width, height), Image.LANCZOS))
 
     og_img=remove_patch_og(img,mask)
-    #plt.imshow(mask); plt.show()
+
+    # print("show mask image from segmentor")
+    # plt.imshow(mask); plt.show()
+
     return og_img,mask
-
-
-    
-    
-    
-       
-    
-    
-    
