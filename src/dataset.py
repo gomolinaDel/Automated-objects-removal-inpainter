@@ -78,7 +78,7 @@ class Dataset(torch.utils.data.Dataset):
         img = Image.fromarray(img)
 
         # print("show image from dataset before resize")
-        # plt.imshow(img); plt.show()
+        plt.imshow(img); plt.show()
 
 
         # resize to original image
@@ -99,10 +99,10 @@ class Dataset(torch.utils.data.Dataset):
         # img = np.array(img.resize((size, size), Image.ANTIALIAS))
 
         # resize to square image
-        img = np.array(img.resize((size, 452), Image.LANCZOS))
+        img = np.array(img.resize((452, size), Image.LANCZOS))
 
         # print("show image from dataset after resize")
-        # plt.imshow(img); plt.show()
+        plt.imshow(img); plt.show()
 
         # create grayscale image
         img_gray = rgb2gray(np.array(img))
@@ -117,10 +117,10 @@ class Dataset(torch.utils.data.Dataset):
         # mask = np.array(mask.resize((size, size), Image.ANTIALIAS))
 
         # resize to square image
-        mask = np.array(mask.resize((size, 452), Image.LANCZOS))
+        mask = np.array(mask.resize((452, size), Image.LANCZOS))
 
         # print("show mask from dataset")
-        # plt.imshow(mask); plt.show()
+        plt.imshow(mask); plt.show()
 
         idx=(mask>0)
         mask[idx]=255
