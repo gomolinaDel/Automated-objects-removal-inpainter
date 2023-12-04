@@ -77,21 +77,21 @@ class Dataset(torch.utils.data.Dataset):
         img,mask=segmentor(self.segment_net,img,self.device,self.objects)
         img = Image.fromarray(img)
 
-        # print("show image from dataset before resize")
-        plt.imshow(img); plt.show()
+        # # print("show image from dataset before resize")
+        # plt.imshow(img); plt.show()
 
 
         # resize to original image
-        width_og, height_og = img.size
+        # width_og, height_og = img.size
 
-        print("width")
-        print(width_og)
-        print("height")
-        print(height_og)
-
-        ratio = int((width_og/height_og))
-        print("ratio")
-        print((width_og/height_og))
+        # print("width")
+        # print(width_og)
+        # print("height")
+        # print(height_og)
+        #
+        # ratio = int((width_og/height_og))
+        # print("ratio")
+        # print((width_og/height_og))
 
         # img = np.array(img.resize((width_og, height_og), Image.LANCZOS))
 
@@ -102,7 +102,7 @@ class Dataset(torch.utils.data.Dataset):
         img = np.array(img.resize((452, size), Image.LANCZOS))
 
         # print("show image from dataset after resize")
-        plt.imshow(img); plt.show()
+        # plt.imshow(img); plt.show()
 
         # create grayscale image
         img_gray = rgb2gray(np.array(img))
@@ -119,8 +119,8 @@ class Dataset(torch.utils.data.Dataset):
         # resize to square image
         mask = np.array(mask.resize((452, size), Image.LANCZOS))
 
-        # print("show mask from dataset")
-        plt.imshow(mask); plt.show()
+        # # print("show mask from dataset")
+        # plt.imshow(mask); plt.show()
 
         idx=(mask>0)
         mask[idx]=255

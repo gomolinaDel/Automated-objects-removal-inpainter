@@ -43,6 +43,9 @@ class EdgeConnect():
         # test mode
         self.test_dataset = Dataset(config, config.TEST_FLIST, config.TEST_EDGE_FLIST, augment=False, training=False)
 
+        print("testing FLIST")
+        print(config.TEST_FLIST)
+
         self.samples_path = os.path.join(config.PATH, 'samples')
         
         self.results_path = os.path.join(config.PATH, 'results')
