@@ -9,7 +9,7 @@ Python 3.8.18 and pytorch 1.5.1 have been used in this project.
 ## How does it work?
 
     
-<img src="https://user-images.githubusercontent.com/31131069/89242695-2b9f5e80-d5d0-11ea-8c72-c865cc72616b.png" width="30%"></img> 
+<img src="https://user-images.githubusercontent.com/31131069/89242660-188c8e80-d5d0-11ea-8277-1ed6b9a0f83d.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/31131069/89242666-1cb8ac00-d5d0-11ea-83b0-61c86d26fa68.png" width="30%"></img> <img src="https://user-images.githubusercontent.com/31131069/89242673-1fb39c80-d5d0-11ea-8ac4-906b5d06d4d6.png" width="30%">
 
 Semantic segmenator model of deeplabv3/fcn resnet 101 has been combined with EdgeConnect. A pre-trained segmentation network has been used for object segmentation (generating a mask around detected object), and its output is fed to a EdgeConnect network along with input image with portion of mask removed. EdgeConnect uses two stage adversarial architecture where first stage is edge generator followed by image completion network. EdgeConnect paper can be found [here](https://arxiv.org/abs/1901.00212) and code in this [repo](https://github.com/knazeri/edge-connect)
 
