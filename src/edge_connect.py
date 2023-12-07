@@ -47,7 +47,7 @@ class EdgeConnect():
         print(config.TEST_FLIST)
 
         self.samples_path = os.path.join(config.PATH, 'samples')
-        
+
         self.results_path = os.path.join(config.PATH, 'results')
 
         if config.RESULTS is not None:
@@ -97,7 +97,7 @@ class EdgeConnect():
         # print("test dataset")
         # print(str(self.test_dataset.__dict__))
         # print("####")
-        
+
         index = 0
 
         # # Create an SR object
@@ -105,7 +105,7 @@ class EdgeConnect():
 
         for items in test_loader:
             name = self.test_dataset.load_name(index)
-        
+
             images, images_gray, edges, masks = self.cuda(*items)
             index += 1
 

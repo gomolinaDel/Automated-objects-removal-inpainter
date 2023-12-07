@@ -33,7 +33,7 @@ class Dataset(torch.utils.data.Dataset):
         self.segment_net = config.SEG_NETWORK
         # in test mode, there's a one-to-one relationship between mask and image
         # masks are loaded non random
-        
+
 
     def __len__(self):
         return len(self.data)
@@ -50,7 +50,7 @@ class Dataset(torch.utils.data.Dataset):
     def load_name(self, index):
         name = self.data[index]
         return os.path.basename(name)
-        
+
     def load_size(self, index):
         img = Image.open(self.data[index])
         width,height=img.size
@@ -63,11 +63,11 @@ class Dataset(torch.utils.data.Dataset):
 
         # load image
         img = Image.open(self.data[index])
-        
-        
 
-        
-        
+
+
+
+
         # gray to rgb
         if img.mode !='RGB':
             img = gray2rgb(np.array(img))
@@ -129,7 +129,7 @@ class Dataset(torch.utils.data.Dataset):
         #closing = cv2.morphologyEx(opening, cv2.MORPH_CLOSE, kernel)
         mask=np.apply_along_axis(fill_gaps, 1, mask) #horizontal padding
         mask=np.apply_along_axis(fill_gaps, 0, mask) #vertical padding
-        
+
 
 
 
@@ -151,7 +151,7 @@ class Dataset(torch.utils.data.Dataset):
         # in test mode images are masked (with masked regions),
         # using 'mask' parameter prevents canny to detect edges for the masked regions
         mask = None if self.training else (1 - mask / 255).astype(np.bool)
-        
+
         # canny
         if self.edge == 1:
             # no edge
@@ -176,7 +176,7 @@ class Dataset(torch.utils.data.Dataset):
 
             return edge
 
-    
+
     def to_tensor(self, img):
         img = Image.fromarray(img)
         img_t = F.to_tensor(img).float()
